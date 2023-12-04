@@ -29,10 +29,10 @@ public class Main {
         // Reformat the inputted name to camel case
         String camelCase = "";
         for (int l = 0; l < name.length(); l++) {
-            String letter = String.valueOf(name.charAt(l));
+            char letter = name.charAt(l);
 
             // Depending on if the current index of the loop is even, capitalize and/or lowercase the iterated letter
-            camelCase += l % 2 == 0 ? letter.toUpperCase() : letter.toLowerCase();
+            camelCase += l % 2 == 0 ? upper(letter) : lower(letter);
         }
 
         // Convert the inputted name to ascii character codes
@@ -50,5 +50,21 @@ public class Main {
         System.out.println("REVERSED: " + reversedName.toUpperCase());
         System.out.println("CaMeL cAsE: " + camelCase);
         System.out.println("ASCII: " + ascii);
+    }
+
+    public static char upper(char letter) {
+        int dec = letter; // Convert the character to decimal
+
+        return (dec >= 97 && dec <= 122) // Check if its ascii value is in the lowercase range of characters
+                ? (char) (dec - 32) // If true, shift its value to its uppercase counterpart
+                : letter; // Otherwise, return the unshifted variable
+    }
+
+    public static char lower(char letter) {
+        int dec = letter; // Convert the character to decimal
+
+        return (dec >= 65 && dec <= 90) // Check if its ascii value is in the uppercase range of characters
+                ? (char) (dec + 32) // If true, shift its value to its lowercase counterpart
+                : letter; // Otherwise, return the unshifted variable
     }
 }
